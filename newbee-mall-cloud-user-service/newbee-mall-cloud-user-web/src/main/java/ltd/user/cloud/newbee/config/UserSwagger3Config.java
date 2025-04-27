@@ -25,7 +25,10 @@ public class UserSwagger3Config {
 
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.OAS_30)
+        // http://localhost:29000/swagger-ui/index.html
+        // springfox的基本API配置
+        return new Docket(DocumentationType.OAS_30) // OpenAPI规范，swagger实现了OpenAPI规范
+                // 设置OpenAPI文档，基本信息：版本、主题、联系人...
                 .apiInfo(apiInfo())
                 .ignoredParameterTypes(AdminUserToken.class, MallUserToken.class)
                 .select()

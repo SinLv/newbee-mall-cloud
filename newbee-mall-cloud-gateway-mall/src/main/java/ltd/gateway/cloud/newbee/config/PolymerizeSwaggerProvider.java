@@ -33,6 +33,7 @@ public class PolymerizeSwaggerProvider implements SwaggerResourcesProvider {
 
     @Override
     public List<SwaggerResource> get() {
+        // 动态聚合多个微服务API文档，http://localhost:29110/swagger-ui/index.html
         List<SwaggerResource> resources = new ArrayList<>();
         List<String> routes = new ArrayList<>();
         //需要聚合的路由配置

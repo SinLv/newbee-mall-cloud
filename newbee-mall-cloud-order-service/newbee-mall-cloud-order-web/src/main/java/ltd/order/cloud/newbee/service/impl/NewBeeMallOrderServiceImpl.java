@@ -214,7 +214,7 @@ public class NewBeeMallOrderServiceImpl implements NewBeeMallOrderService {
 
     @Override
     @Transactional
-    @GlobalTransactional
+//    @GlobalTransactional
     public String saveOrder(Long mallUserId, MallUserAddress address, List<Long> cartItemIds) {
         //调用购物车服务feign获取数据
         Result<List<NewBeeMallShoppingCartItemDTO>> cartItemDTOListResult = shopCartService.listByCartItemIds(cartItemIds);
