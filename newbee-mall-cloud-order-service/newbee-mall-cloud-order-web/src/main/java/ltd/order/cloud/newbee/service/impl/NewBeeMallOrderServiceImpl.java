@@ -214,7 +214,7 @@ public class NewBeeMallOrderServiceImpl implements NewBeeMallOrderService {
 
     @Override
     @Transactional
-//    @GlobalTransactional
+    @GlobalTransactional(timeoutMills = 180 * 1000)
     public String saveOrder(Long mallUserId, MallUserAddress address, List<Long> cartItemIds) {
         //调用购物车服务feign获取数据
         Result<List<NewBeeMallShoppingCartItemDTO>> cartItemDTOListResult = shopCartService.listByCartItemIds(cartItemIds);
@@ -313,6 +313,7 @@ public class NewBeeMallOrderServiceImpl implements NewBeeMallOrderService {
                     //保存至数据库
                     if (newBeeMallOrderItemMapper.insertBatch(newBeeMallOrderItems) > 0 && newBeeMallOrderAddressMapper.insertSelective(newBeeMallOrderAddress) > 0) {
                         //所有操作成功后，将订单号返回，以供Controller方法跳转到订单详情
+//                        int i = 1/0;
                         return orderNo;
                     }
                     NewBeeMallException.fail(ServiceResultEnum.ORDER_PRICE_ERROR.getResult());
